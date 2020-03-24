@@ -18,12 +18,16 @@
 </el-card>
     </div>
     </el-col>
-  <el-col :span="8"><div class="grid-content bg-purple">
- <el-date-picker v-model="selectYea" type="year" placeholder="按需选择年"   @change="jobSearch" value-format="yyyy" class="year"></el-date-picker>
+    <el-col :span="8">
+    <el-form @submit.native.prevent="select" model="selection">
+      <el-form-item>
+<div class="grid-content bg-purple">
+ <el-date-picker v-model="selection.selectYea" type="year" placeholder="按需选择年"   @change="jobSearch" value-format="yyyy" class="year"></el-date-picker>
     </div>
-    </el-col>
-  <el-col :span="8">
-            <el-select v-model="value_0" type="String" placeholder="按需选择月" class="month">
+
+      </el-form-item>
+    <el-form-item>
+            <el-select v-model="selection.value_0" type="String" placeholder="按需选择月" class="month">
               <el-option
                 v-for="item in options_0"
                 :key="item.value_0"
@@ -32,9 +36,9 @@
                 :disabled="item.disabled">
               </el-option>
             </el-select>
-  </el-col>
-   <el-col :span="8">
-            <el-select v-model="value" type="String" placeholder="按需选择地区">
+    </el-form-item>
+    <el-form-item>
+            <el-select v-model="selection.value" type="String" placeholder="按需选择地区">
               <el-option
                 v-for="item in options"
                 :key="item.value"
@@ -43,6 +47,11 @@
                 :disabled="item.disabled">
               </el-option>
           </el-select>
+    </el-form-item>
+    <el-form-item >
+      <el-button type="primary" native-type="submit">立即查询</el-button>
+    </el-form-item>
+    </el-form>
     </el-col>
 </el-row>
 <el-row :gutter="20">
@@ -84,7 +93,6 @@
 <script>
 import Vue from 'vue'
 import { Select, Option } from 'element-ui'
-import axios from 'axios'
 import echarts from 'echarts'
 Vue.use(Select)
 Vue.use(Option)
@@ -110,148 +118,152 @@ export default {
   },
   data () {
     return {
-      selectYea: '',
       chart: null,
-      options_0: [{
-        value_0: '选项一',
+options_0: [{
+  value_0: '0',
+  label: '0' }, {
+        value_0: '1',
         label: '1'
       }, {
-        value_0: '选项二',
+        value_0: '2',
         label: '2'
       }, {
-        value_0: '选项三',
+        value_0: '3',
         label: '3'
       }, {
-        value_0: '选项四',
+        value_0: '4',
         label: '4'
       }, {
-        value_0: '选项五',
+        value_0: '5',
         label: '5'
       }, {
-        value_0: '选项六',
+        value_0: '6',
         label: '6'
       }, {
-        value_0: '选项七',
+        value_0: '7',
         label: '7'
       }, {
-        value_0: '选项八',
+        value_0: '8',
         label: '8'
       }, {
-        value_0: '选项九',
+        value_0: '9',
         label: '9'
       }, {
-        value_0: '选项十',
+        value_0: '10',
         label: '10'
       }, {
-        value_0: '选项十一',
+        value_0: '11',
         label: '11'
       }, {
-        value_0: '选项十二',
+        value_0: '12',
         label: '12'
       }],
      options: [{
-        value: '选项1',
+        value: '全国',
         label: '全国'
       }, {
-        value: '选项2',
+        value: '北京市',
         label: '北京市'
       }, {
-        value: '选项3',
+        value: '天津市',
         label: '天津市'
       }, {
-        value: '选项4',
+        value: '河北省',
         label: '河北省'
       }, {
-        value: '选项5',
+        value: '山西省',
         label: '山西省'
       }, {
-        value: '选项6',
+        value: '内蒙古',
         label: '内蒙古'
       }, {
-        value: '选项7',
+        value: '辽宁省',
         label: '辽宁省'
       }, {
-        value: '选项8',
+        value: '吉林省',
         label: '吉林省'
       }, {
-        value: '选项9',
+        value: '黑龙江',
         label: '黑龙江'
       }, {
-        value: '选项10',
+        value: '上海市',
         label: '上海市'
       }, {
-        value: '选项11',
+        value: '江苏省',
         label: '江苏省'
       }, {
-        value: '选项12',
+        value: '浙江省',
         label: '浙江省'
       }, {
-        value: '选项13',
+        value: '安徽省',
         label: '安徽省'
       }, {
-        value: '选项14',
+        value: '福建省',
         label: '福建省'
       }, {
-        value: '选项15',
+        value: '江西省',
         label: '江西省'
       }, {
-        value: '选项16',
+        value: '山东省',
         label: '山东省'
       }, {
-        value: '选项17',
+        value: '河南省',
         label: '河南省'
       }, {
-        value: '选项18',
+        value: '湖北省',
         label: '湖北省'
       }, {
-        value: '选项19',
+        value: '湖南省',
         label: '湖南省'
       }, {
-        value: '选项20',
+        value: '广东省',
         label: '广东省'
       }, {
-        value: '选项21',
+        value: '广西',
         label: '广西'
       }, {
-        value: '选项22',
+        value: '海南省',
         label: '海南省'
       }, {
-        value: '选项23',
+        value: '重庆市',
         label: '重庆市'
       }, {
-        value: '选项24',
+        value: '四川省',
         label: '四川省'
       }, {
-        value: '选项25',
+        value: '贵州省',
         label: '贵州省'
       }, {
         value: '选项26',
         label: '云南省'
       }, {
-        value: '选项27',
+        value: '西藏',
         label: '西藏'
       }, {
-        value: '选项28',
+        value: '陕西省',
         label: '陕西省'
       }, {
-        value: '选项29',
+        value: '甘肃省',
         label: '甘肃省'
       }, {
-        value: '选项30',
+        value: '青海省',
         label: '青海省'
       }, {
-        value: '选项31',
+        value: '宁夏',
         label: '宁夏'
       }, {
-        value: '选32',
+        value: '新疆',
         label: '新疆'
       }, {
-        value: '选33',
+        value: '建设兵团',
         label: '建设兵团'
       } ],
-        value_0: '',
-        value: ''
+      selection: {
+      selectYea: '',
+        value: '',
+        value_0: ''
         }
+    }
 },
   created () {
     this.initData({})
@@ -286,18 +298,20 @@ export default {
     },
     async getJobListByMonth (data) {
     },
+    select () {
+      console.log(this.selection)
+    },
     initChart () {
-      this.chart = echarts.init(this.$refs.myEchart_0)
-      var year0 = this.selectYea
-      var year = String(year0)
-      var month = this.value_0
-      var location = this.value
-      // var url = 'http://localhost:8080/#/location'
-      axios.http.get('http://localhost:8080/#/location', { params: {
+        this.chart = echarts.init(this.$refs.myEchart_0)
+      var year = this.selection.selectYea
+      var month = this.selection.value_0
+      var location = this.selection.value
+      this.$http.get('/location', { params: {
          year: year,
          month: month,
          location: location
           } }).then((response) => {
+            response = response.data
                 // console.log(response)
                 // this.initChart(response)
                       this.chart.setOption = {

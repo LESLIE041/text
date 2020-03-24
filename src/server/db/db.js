@@ -1,7 +1,7 @@
 // 数据库连接配置db.js
 module.exports = {
     mysql: {
-    host: 'locahost',
+    host: 'localhost',
     user: 'root',
     password: 'root',
     database: 'liugann',

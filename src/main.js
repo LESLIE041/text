@@ -5,6 +5,8 @@ import './plugins/element.js'
 import Element from 'element-ui'
 import echarts from 'echarts'
 import axios from 'axios'
+import VueResource from 'vue-resource'
+
 // // 用于登录界面，用于接口获取数据
 // import axios from 'axios'
 // // 配置请求的根路径
@@ -18,6 +20,7 @@ import axios from 'axios'
 // Vue.prototype.$http = axios
 
 Vue.use(Element, { size: 'small', zIndex: 3000 })
+Vue.use(VueResource)
 
 Vue.config.productionTip = false
 
@@ -27,4 +30,6 @@ new Vue({
 }).$mount('#app')
 
 Vue.prototype.$echarts = echarts
-Vue.prototype.$http = axios
+Vue.prototype.$http = axios.create({
+   baseURL: 'http://localhost:3000/api'
+})
