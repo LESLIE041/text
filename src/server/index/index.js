@@ -1,7 +1,7 @@
-const LocationApi = require('D:/qianduan/test/src/server/api/1')
-const ageApi = require('D:/qianduan/test/src/server/api/2')
-const PLocationApi = require('D:/qianduan/test/src/server/api/3')
-const PageApi = require('D:/qianduan/test/src/server/api/4')
+const LocationApi = require('../api/1')
+const ageApi = require('../api/2')
+const PLocationApi = require('../api/3')
+const PageApi = require('../api/4')
 // eslint-disable-next-line no-unused-vars
 const fs = require('fs')
 // eslint-disable-next-line no-unused-vars
@@ -16,10 +16,10 @@ app.use(bodyParser.urlencoded({
 }))
 
 // 后端api路由
-app.use('D:/qianduan/test/src/server/api/1', LocationApi)
-app.use('D:/qianduan/test/src/server/api/2', ageApi)
-app.use('D:/qianduan/test/src/server/api/3', PLocationApi)
-app.use('D:/qianduan/test/src/server/api/4', PageApi)
+app.use('/api/1', LocationApi)
+app.use('/api/2', ageApi)
+app.use('/api/3', PLocationApi)
+app.use('/api/4', PageApi)
 
 // 监听端口
 app.listen(8080)
