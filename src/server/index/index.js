@@ -29,10 +29,10 @@ app.get('/', async (req, res) => {
 
 // 地址查询
 app.get('/api/location', async (req, res) => {
-  var sql = $sql.Table1.search
+  var sql = $sql.Table1.search_5
   var params = req.query
   console.log(params)
-  conn.query(sql, [params.year, params.month, params.location], function (err, result) {
+  conn.query(sql, [params.year], function (err, result) {
     if (err) {
       console.log(err)
     }
