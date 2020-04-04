@@ -31,13 +31,24 @@ app.get('/', async (req, res) => {
 app.get('/api/location', async (req, res) => {
   var sql = $sql.Table1.search_5
   var params = req.query
-  console.log(params)
   conn.query(sql, [params.year], function (err, result) {
     if (err) {
       console.log(err)
     }
     if (result) {
-      console.log(result)
+      res.send(result)
+    }
+  })
+})
+
+app.get('/api/search', async (req, res) => {
+  const sql = $sql.Table1.search
+  const params = req.query
+  conn.query(sql, [params.year, params.month, params.location], (err, result) => {
+    if (err) {
+      console.log(err)
+    }
+    if (result) {
       res.send(result)
     }
   })

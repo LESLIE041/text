@@ -1,6 +1,6 @@
 var sqlMap = {
   Table1: {
-    search: 'select * from table1 where Year = ? or Month = ? or Location = ?',
+    search: 'select * from table1 where Year = ? and Month = ? and Location = ?',
     search_0: 'select * from table1 where Year = ? and Month = ? and Location = ?',
     search_1: 'select * from table1 where Year = ? and Location = ?',
     search_2: 'select * from table1 where Month = ? and Location = ?',
