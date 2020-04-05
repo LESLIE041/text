@@ -1,8 +1,16 @@
 var sqlMap = {
   Table1: {
     search: 'select * from table1 where Year = ? and Month = ? and Location = ?',
+<<<<<<< HEAD
     search_1: 'select * from table1 where Year = ? and Location = ?',
     search_2: 'select * from table1 where Month = ? and Location = ?',
+=======
+    search_0: 'select * from table1 where Year = ? and Month = ? and Location = ?',
+    search_1: 'select * from table1 where Year = ? and Location = ?',
+    search_2: 'select * from table1 where Month = ? and Location = ?',
+    search_3: 'select * from table1 where Year >= ? and Location = ?',
+    search_4: 'select * from table1 where Year>?',
+>>>>>>> 5892b29a3c8ffeb4b6c28dac267dcf3f1f1bfc5b
     search_5: 'select DISTINCT Location, Year, SUM(`Incidence _of_disease`) as \'incidenceOfADisease\' from table1 where Year=? group by Location'
   },
   Table2: {

@@ -45,6 +45,7 @@ app.get('/', async (req, res) => {
 })
 
 // 地址查询
+<<<<<<< HEAD
 app.get('/api/1/search', async (req, res) => {
   const sql = $sql.Table1.search
   const params = req.query
@@ -61,6 +62,12 @@ app.get('/api/1/search_1', async (req, res) => {
   const sql = $sql.Table1.search_1
   const params = req.query
   conn.query(sql, [params.year, params.location], (err, result) => {
+=======
+app.get('/api/location', async (req, res) => {
+  var sql = $sql.Table1.search_5
+  var params = req.query
+  conn.query(sql, [params.year], function (err, result) {
+>>>>>>> 5892b29a3c8ffeb4b6c28dac267dcf3f1f1bfc5b
     if (err) {
       console.log(err)
     }
@@ -69,10 +76,18 @@ app.get('/api/1/search_1', async (req, res) => {
     }
   })
 })
+<<<<<<< HEAD
 app.get('/api/1/search_2', async (req, res) => {
   const sql = $sql.Table1.search_2
   const params = req.query
   conn.query(sql, [params.month, params.location], (err, result) => {
+=======
+
+app.get('/api/search', async (req, res) => {
+  const sql = $sql.Table1.search
+  const params = req.query
+  conn.query(sql, [params.year, params.month, params.location], (err, result) => {
+>>>>>>> 5892b29a3c8ffeb4b6c28dac267dcf3f1f1bfc5b
     if (err) {
       console.log(err)
     }
