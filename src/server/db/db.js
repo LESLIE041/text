@@ -4,8 +4,8 @@ module.exports = {
     host: 'localhost',
     user: 'root',
     password: 'root',
-    database: 'liugann',
+    database: 'liugan',
     port: '3306'
-    }
-// eslint-disable-next-line no-trailing-spaces
-} 
+    },
+// eslint-disble-next-line no-trailing-spaces
+}
